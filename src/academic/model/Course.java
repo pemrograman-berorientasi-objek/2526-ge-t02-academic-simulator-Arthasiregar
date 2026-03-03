@@ -1,19 +1,22 @@
 package academic.model;
 
+/**
+ * @author 12S24010 Artha Siregar
+ */
+
 public class Course {
     private String code;
     private String name;
-    private int sks;
-    private String grade; // Asumsi ini adalah grade standar untuk course, mungkin "A" untuk lulus default.
+    private int credits;
+    private String grade; // This field holds the last segment of the course input, e.g., 'C' or 'D'
 
-    public Course(String code, String name, int sks, String grade) {
+    public Course(String code, String name, int credits, String grade) {
         this.code = code;
         this.name = name;
-        this.sks = sks;
+        this.credits = credits;
         this.grade = grade;
     }
 
-    // Getter methods
     public String getCode() {
         return code;
     }
@@ -22,8 +25,8 @@ public class Course {
         return name;
     }
 
-    public int getSks() {
-        return sks;
+    public int getCredits() {
+        return credits;
     }
 
     public String getGrade() {
@@ -32,7 +35,7 @@ public class Course {
 
     @Override
     public String toString() {
-        // Format output baru sesuai contoh: code|name|sks|grade
-        return String.format("%s|%s|%d|%s", code, name, sks, grade);
+        return code + "|" + name + "|" + credits + "|" + grade;
     }
 }
+

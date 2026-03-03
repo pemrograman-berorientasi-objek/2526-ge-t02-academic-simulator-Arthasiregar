@@ -1,19 +1,22 @@
 package academic.model;
 
+/**
+ * @author 12S24010 Artha Siregar
+ */
+
 public class Student {
     private String id;
     private String name;
-    private int entranceYear;
+    private int year;
     private String major;
 
-    public Student(String id, String name, int entranceYear, String major) {
+    public Student(String id, String name, int year, String major) {
         this.id = id;
         this.name = name;
-        this.entranceYear = entranceYear;
+        this.year = year;
         this.major = major;
     }
 
-    // Getter methods
     public String getId() {
         return id;
     }
@@ -22,8 +25,8 @@ public class Student {
         return name;
     }
 
-    public int getEntranceYear() {
-        return entranceYear;
+    public int getYear() {
+        return year;
     }
 
     public String getMajor() {
@@ -32,7 +35,7 @@ public class Student {
 
     @Override
     public String toString() {
-        // Format output baru sesuai contoh: id|name|entranceYear|major
-        return String.format("%s|%s|%d|%s", id, name, entranceYear, major);
+        return id + "|" + name + "|" + year + "|" + major;
     }
 }
+

@@ -1,48 +1,40 @@
 package academic.driver;
 
+/**
+ * @author 12S24010 Artha Siregar
+ */
+
 import academic.model.Course;
+import java.util.ArrayList;
+import java.util.List; // Using List interface for better practice
 import java.util.Scanner;
-import java.util.ArrayList; // Menggunakan ArrayList untuk penyimpanan dinamis
 
 public class Driver1 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
-        // Menggunakan ArrayList untuk penyimpanan dinamis
-        ArrayList<Course> courses = new ArrayList<>();
+        List<Course> courses = new ArrayList<>(); // Using List interface
 
-        String line;
         while (input.hasNextLine()) {
-            line = input.nextLine();
-
+            String line = input.nextLine();
             if (line.equals("---")) {
-                break; // Berhenti jika input adalah "---"
+                break;
             }
 
-            // Memparsing input
-            String[] parts = line.split("#");
-            if (parts.length == 4) { // Mengharapkan 4 bagian: code#name#sks#grade
-                try {
-                    String code = parts[0];
-                    String name = parts[1];
-                    int sks = Integer.parseInt(parts[2]);
-                    String grade = parts[3];
-
-                    // Membuat objek Course dan menambahkannya ke ArrayList
-                    courses.add(new Course(code, name, sks, grade));
-                } catch (NumberFormatException e) {
-                    // Penanganan error tanpa output ke stderr, sesuai contoh output
-                }
-            } else {
-                // Penanganan error tanpa output ke stderr
+            String[] data = line.split("#");
+            if (data.length == 4) {
+                String code = data[0];
+                String name = data[1];
+                int credits = Integer.parseInt(data[2]);
+                String grade = data[3];
+                courses.add(new Course(code, name, credits, grade));
             }
         }
 
-        // Menampilkan semua data course tanpa header atau baris kosong, sesuai contoh output
         for (Course course : courses) {
-            System.out.println(course.toString());
+            System.out.println(course);
         }
 
         input.close();
     }
 }
+
