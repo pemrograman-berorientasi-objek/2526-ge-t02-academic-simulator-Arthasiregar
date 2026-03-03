@@ -24,6 +24,7 @@ public class Driver4 {
 
             String[] parts = line.split("#", 2); 
             if (parts.length < 2) {
+                // Input tidak sesuai format <command>#<data>, diabaikan tanpa pesan error
                 continue; 
             }
 
@@ -41,11 +42,12 @@ public class Driver4 {
                     addEnrollment(data, enrollments);
                     break;
                 default:
+                    // Command tidak dikenal, diabaikan tanpa pesan error
                     break; 
             }
         }
 
-        // Menampilkan semua data yang telah dimasukkan tanpa header atau baris kosong
+        // Menampilkan semua data yang telah dimasukkan sesuai urutan dan format contoh output
         displayAllData(courses, students, enrollments);
 
         input.close();
@@ -61,7 +63,7 @@ public class Driver4 {
                 String grade = courseParts[3];
                 courses.add(new Course(code, name, sks, grade));
             } catch (NumberFormatException e) {
-                // Penanganan error tanpa output ke stderr
+                // Penanganan error tanpa output ke stderr, sesuai contoh output yang bersih
             }
         } else {
             // Penanganan error tanpa output ke stderr
@@ -74,7 +76,8 @@ public class Driver4 {
             try {
                 String id = studentParts[0];
                 String name = studentParts[1];
-                int entranceYear = Integer.parseInt(studentParts[2]);
+                // PERBAIKAN BUG DI SINI: Menggunakan studentParts[2]
+                int entranceYear = Integer.parseInt(studentParts[2]); 
                 String major = studentParts[3];
                 students.add(new Student(id, name, entranceYear, major));
             } catch (NumberFormatException e) {
@@ -87,33 +90,36 @@ public class Driver4 {
 
     private static void addEnrollment(String data, ArrayList<Enrollment> enrollments) {
         String[] enrollmentParts = data.split("#");
-        if (enrollmentParts.length == 4) { 
+        if (enrollmentParts.length == 4) { // Format tanpa grade eksplisit
             String studentId = enrollmentParts[0];
             String courseCode = enrollmentParts[1];
             String academicYear = enrollmentParts[2];
             String semester = enrollmentParts[3];
-            enrollments.add(new Enrollment(studentId, courseCode, academicYear, semester)); 
-        } else if (enrollmentParts.length == 5) {
+            enrollments.add(new Enrollment(studentId, courseCode, academicYear, semester)); // Menggunakan konstruktor 4 parameter
+        } else if (enrollmentParts.length == 5) { // Format dengan grade eksplisit
             String studentId = enrollmentParts[0];
             String courseCode = enrollmentParts[1];
             String academicYear = enrollmentParts[2];
             String semester = enrollmentParts[3];
             String grade = enrollmentParts[4];
-            enrollments.add(new Enrollment(studentId, courseCode, academicYear, semester, grade)); 
+            enrollments.add(new Enrollment(studentId, courseCode, academicYear, semester, grade)); // Menggunakan konstruktor 5 parameter
         } else {
             // Penanganan error tanpa output ke stderr
         }
     }
 
     private static void displayAllData(ArrayList<Course> courses, ArrayList<Student> students, ArrayList<Enrollment> enrollments) {
+        // Menampilkan semua Course
         for (Course course : courses) {
             System.out.println(course.toString());
         }
 
+        // Menampilkan semua Student
         for (Student student : students) {
             System.out.println(student.toString());
         }
 
+        // Menampilkan semua Enrollment
         for (Enrollment enrollment : enrollments) {
             System.out.println(enrollment.toString());
         }

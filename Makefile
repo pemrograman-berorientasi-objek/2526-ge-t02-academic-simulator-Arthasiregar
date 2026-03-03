@@ -12,3 +12,4 @@ test_03 :
 
 test_04 :
 	cd bin && java academic.driver.Driver4
+	

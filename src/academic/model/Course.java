@@ -4,7 +4,7 @@ public class Course {
     private String code;
     private String name;
     private int sks;
-    private String grade; // grade bisa berupa "A", "B+", "C", dsb.
+    private String grade; // Asumsi ini adalah grade standar untuk course, mungkin "A" untuk lulus default.
 
     public Course(String code, String name, int sks, String grade) {
         this.code = code;
@@ -13,7 +13,7 @@ public class Course {
         this.grade = grade;
     }
 
-    // Getter methods (jika diperlukan untuk pengaksesan data dari luar)
+    // Getter methods
     public String getCode() {
         return code;
     }
@@ -32,8 +32,7 @@ public class Course {
 
     @Override
     public String toString() {
-        // Format output: kode (nama) [sks SKS] grade
-        return String.format("%s (%s) [%d SKS] %s", code, name, sks, grade);
+        // Format output baru sesuai contoh: code|name|sks|grade
+        return String.format("%s|%s|%d|%s", code, name, sks, grade);
     }
 }
-

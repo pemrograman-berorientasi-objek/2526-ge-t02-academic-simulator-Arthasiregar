@@ -32,7 +32,7 @@ public class Student {
 
     @Override
     public String toString() {
-        // Format output: id (nama) [major, entranceYear]
-        return String.format("%s (%s) [%s, %d]", id, name, major, entranceYear);
+        // Format output baru sesuai contoh: id|name|entranceYear|major
+        return String.format("%s|%s|%d|%s", id, name, entranceYear, major);
     }
 }
